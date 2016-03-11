@@ -1,0 +1,19 @@
+{
+  "name": "Facedrive",
+  "version": "0.0.0",
+  "description": "Unlimited cloud storage for free, always.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "facedrive"
+  ],
+  "author": "Sachin Kelkar",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.2",
+    "require-reload": "^0.2.2",
+    "selenium-webdriver": "^2.52.0"
+  }
+}
