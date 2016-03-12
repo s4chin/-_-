@@ -1,2 +1,10 @@
-nav ul{height:200px; width:18%;}
-nav ul{overflow:hidden; overflow-y:scroll;}
+body {margin:5px;padding:5px;}
+h1 {margin: 0;}
+nav div{height:210px; width:100%;}
+nav div{overflow:hidden; overflow-y:scroll;}
+
+#holder {width: 100%; width: 100vw;text-align: center;
+vertical-align: middle;
+line-height: 50px;}
+
+#login {text-align: center;}

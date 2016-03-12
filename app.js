@@ -34,25 +34,29 @@ app.on('ready', function() {
       .build();
 
   var uid, pass, uname = null;
+  var url = [];
   ipcMain.on('credentials', function(event, id, pwd) {
     uid = id;
     pass = pwd;
     uname = {name:"undefined"};
+
     console.log(id + pass);
     browser.logIn(driver, uid, pass, uname).then(function(result) {
       console.log(uname["name"]);
+      /*browser.getList(driver, uname, url).then(function(result) {
+        console.log(url);
+      }, function(err) {
+        console.log("Nope");
+      });*/
     }, function(err) {
       console.log("It broke!");
     });
+
   });
 
   ipcMain.on('fUpload', function(event, path) {
     console.log(path);
-    browser.fileUpload(driver, path).then(function(result) {
-
-    }, function(err) {
-
-    });
+    browser.fileUpload(driver, path, uname);
   });
 
   mainWindow.on('closed', function() {

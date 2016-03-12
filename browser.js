@@ -1,8 +1,9 @@
 var webdriver = require('selenium-webdriver'),
 By = require('selenium-webdriver').By,
-until = require('selenium-webdriver').until;
+until = require('selenium-webdriver').until,
+Key = require('selenium-webdriver').Key;
 var fs = require('fs');
-var sleep = require('sleep')
+var zip = require('./zip.js');
 
 var exports = module.exports = {};
 
@@ -39,3 +40,48 @@ exports.logIn = function(driver, uid, pass, uname) {
     });
 
 };
+
+exports.getList = function(driver, uname, url) {
+   return new Promise(function(resolve, reject) {
+     driver.get('https://www.facebook.com/messages/' + uname["name"]).then(function() {
+         driver.findElements(By.css(a._59gp)).then(function(results) {
+             for(var i=0; i<results.length; i++) {
+               results[i].getAttribute('href').then(function(link) {
+                 url.push(link);
+               });
+               if(url.length === results.length) {
+                 if(url.length > 0 || (url.length == 0 && results.length == 0)) {
+                   resolve("Success");
+                 }
+                 else {
+                   reject(Error("Broke"));
+                 }
+               }
+             }
+
+
+         });
+         console.log('Yep');
+     });
+   });
+};
+
+exports.fileUpload = function(driver, path, uname) {
+    path = zip.mkZip(path);
+    driver.get('https://www.facebook.com/messages/' + uname["name"]).then(function() {
+      driver.findElement(By.className("_3jk")).then(function(input) {
+          input.findElement(By.name("attachment[]")).then(function(attach) {
+              attach.sendKeys(path).then(function() {
+                  driver.findElement(By.className("_1rt")).then(function(message) {
+                      message.findElement(By.name("message_body")).then(function(m) {
+                          m.sendKeys(Key.RETURN).then(function() {
+                              console.log("Yass!!");
+                          });
+                      });
+                  });
+              });
+          });
+      });
+    });
+
+}

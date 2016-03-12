@@ -12,6 +12,7 @@
   "author": "Sachin Kelkar",
   "license": "ISC",
   "dependencies": {
+    "adm-zip": "^0.4.7",
     "fs": "0.0.2",
     "selenium-webdriver": "^2.52.0",
     "sleep": "^3.0.1"

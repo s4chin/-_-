@@ -2,41 +2,40 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Facedrive</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="main.css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script>window.$ = window.jQuery = require('./jquery.min.js');</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <p>We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.</p>
+    <h1 class="display-4"><i class="icon-cloud"></i> Facedrive</h1>
+    <p class="lead">Unlimited cloud storage for free, always.</p>
 
     <form id="login">
-      User ID:<br>
-      <input type="text" name="uid" id="uid"><br>
-      Password:<br>
-      <input type="password" name="pass" id="pass">
-      <input type="button" name="submit" value="Submit" id="submit" onclick="sendCred(this.form)">
+      <div class="form-group">
+        <label for="uid">Email address</label>
+        <input type="text" class="form-control" name="uid" id="uid" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="pass">Password</label>
+        <input type="password" name="pass" id="pass" class="form-control" placeholder="Password">
+      </div>
+      <input type="button" class="btn btn-primary bt-block" name="submit" value="Submit" id="submit" onclick="sendCred(this.form)">
     </form>
+    <br>
     <nav>
-      <ul>
-        <li>Link 1</li>
-        <li>Link 2</li>
-        <li>Link 3</li>
-        <li>Link 4</li>
-        <li>Link 5</li>
-        <li>Link 6</li>
-        <li>Link 7</li>
-        <li>Link 8</li>
-        <li>Link 9</li>
-        <li>Link 10</li>
-        <li>Link 11</li>
-        <li>Link 13</li>
-      </ul>
+      <div class="list-group">
+        <a href="#" class="list-group-item active">Dapibus ac facilisis in</a>
+        <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+        <a href="#" class="list-group-item">Morbi leo risus</a>
+        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+        <a href="#" class="list-group-item">Vestibulum at eros</a>
+      </div>
     </nav>
-    <div id="holder">
-      Drag your file here
-    </div>
+    <div id="holder" style="height:100px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;border:2px solid #878787;background:rgba(224,224,224,0.5);">Drag file here</div>
     <script type="text/javascript" src="index.js"></script>
   </body>
 </html>
