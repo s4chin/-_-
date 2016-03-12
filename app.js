@@ -4,8 +4,9 @@ const electron = require('electron');
 const app = electron.app;  // Module to control application life.
 const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
 const ipcMain = require('electron').ipcMain;
-var reload = require('require-reload')(require),
-browser = reload('./browser.js');
+const browser = require('./browser.js');
+var sleep = require('sleep');
+var webdriver = require('selenium-webdriver');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -28,16 +29,31 @@ app.on('ready', function() {
   mainWindow.loadURL('file://' + __dirname + '/views/main.html');
   mainWindow.webContents.openDevTools();
 
-  var uid, pass = null;
+  var driver = new webdriver.Builder()
+      .forBrowser('chrome')
+      .build();
+
+  var uid, pass, uname = null;
   ipcMain.on('credentials', function(event, id, pwd) {
     uid = id;
     pass = pwd;
+    uname = {name:"undefined"};
     console.log(id + pass);
-    browser.logIn(uid, pass);
-    browser = reload(./browser.js);
-    console.log(browser.uname);
+    browser.logIn(driver, uid, pass, uname).then(function(result) {
+      console.log(uname["name"]);
+    }, function(err) {
+      console.log("It broke!");
+    });
   });
 
+  ipcMain.on('fUpload', function(event, path) {
+    console.log(path);
+    browser.fileUpload(driver, path).then(function(result) {
+
+    }, function(err) {
+
+    });
+  });
 
   mainWindow.on('closed', function() {
     mainWindow = null;
