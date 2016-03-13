@@ -24,10 +24,10 @@ app.on('window-all-closed', function() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({width: 9000, height: 700});
 
   mainWindow.loadURL('file://' + __dirname + '/views/main.html');
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
 
   var driver = new webdriver.Builder()
       .forBrowser('chrome')
@@ -40,7 +40,7 @@ app.on('ready', function() {
     pass = pwd;
     uname = {name:"undefined"};
 
-    console.log(id + pass);
+    //console.log(id + pass);
     browser.logIn(driver, uid, pass, uname).then(function(result) {
       console.log(uname["name"]);
       /*browser.getList(driver, uname, url).then(function(result) {
